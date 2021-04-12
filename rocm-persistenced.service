@@ -1,0 +1,5 @@
+[Service]
+ExecStart=/opt/rocm-persistenced/bin/rocm-persistenced
+
+[Install]
+WantedBy=multi-user.target

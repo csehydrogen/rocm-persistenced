@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <csignal>
-#include <unistd.h>
 #include <CL/cl.h>
 
 inline void CHECK_OPENCL(cl_int ret, const char* file = __builtin_FILE(), int line = __builtin_LINE()) {
@@ -11,9 +10,10 @@ inline void CHECK_OPENCL(cl_int ret, const char* file = __builtin_FILE(), int li
 }
 
 int main() {
+  printf("Finding OpenCL platforms...\n"); fflush(stdout);
   unsigned num_platforms;
   CHECK_OPENCL(clGetPlatformIDs(0, NULL, &num_platforms));
-  printf("%d OpenCL platforms are found. Keeping them awake... (pid=%d)\n", num_platforms, getpid());
+  printf("%d OpenCL platforms are found. Keeping them awake...\n", num_platforms); fflush(stdout);
   sigset_t mask;
   sigemptyset(&mask);
   while (true) {
